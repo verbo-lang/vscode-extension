@@ -191,9 +191,34 @@
   "Importar Módulo": {
     "prefix": "incluir",
     "body": [
-      "Incluir ${1|Texto,Matematica,Arquivo,Html|}."
+      "Incluir ${1|Texto,Matematica,Arquivo,Html,Internet,Json,Csv,Sistema,Criptografia|}."
     ],
     "description": "Importa um módulo da biblioteca padrão"
+  },
+  "Requisição HTTP (Internet)": {
+    "prefix": "http_get",
+    "body": [
+      "Incluir Internet.",
+      "O resposta é Obter de Internet com (\"${1:https://api.exemplo.com}\").",
+      "Exibir com (resposta)."
+    ],
+    "description": "Exemplo de requisição GET usando o módulo Internet"
+  },
+  "Manipulação JSON": {
+    "prefix": "json_parse",
+    "body": [
+      "Incluir Json.",
+      "O dados é Decodificar de Json com (${1:texto_json})."
+    ],
+    "description": "Decodificação de texto JSON com o módulo Json"
+  },
+  "Criptografia / Hashing": {
+    "prefix": "hash_sha256",
+    "body": [
+      "Incluir Criptografia.",
+      "O hash é Sha256 de Criptografia com (\"${1:texto}\")."
+    ],
+    "description": "Geração de hash SHA-256 com o módulo Criptografia"
   }
 }
 

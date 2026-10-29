@@ -28,7 +28,7 @@ export class VerboCompletionProvider implements vscode.CompletionItemProvider {
       this.criarItem('Repita para cada', vscode.CompletionItemKind.Keyword, 'Repetição sobre lista', 'Repita para cada ${1:item} em ${2:lista}:\n\t$0\n.'),
       this.criarItem('Enquanto', vscode.CompletionItemKind.Keyword, 'Loop condicional', 'Enquanto ${1:condicao}:\n\t$0\n.'),
       this.criarItem('Dado', vscode.CompletionItemKind.Keyword, 'Cláusula de guarda / premissa', 'Dado ${1:condicao}.'),
-      this.criarItem('Incluir', vscode.CompletionItemKind.Keyword, 'Importar pacote padrão', 'Incluir ${1|Texto,Matematica,Arquivo,Html|}.')
+      this.criarItem('Incluir', vscode.CompletionItemKind.Keyword, 'Importar pacote padrão', 'Incluir ${1|Texto,Matematica,Arquivo,Html,Internet,Json,Csv,Sistema,Criptografia|}.')
     );
 
     // V2 Concorrência e Estruturas
@@ -104,8 +104,104 @@ export class VerboCompletionProvider implements vscode.CompletionItemProvider {
     // Módulo Html
     items.push(
       this.criarItem('CriarPagina de Html', vscode.CompletionItemKind.Function, 'CriarPagina(titulo, corpo: Texto) -> Texto', 'CriarPagina de Html com (${1:titulo}, ${2:corpo})'),
+      this.criarItem('CriarPaginaComEstilo de Html', vscode.CompletionItemKind.Function, 'CriarPaginaComEstilo(titulo, estilo, corpo: Texto) -> Texto', 'CriarPaginaComEstilo de Html com (${1:titulo}, ${2:estilo}, ${3:corpo})'),
       this.criarItem('CriarElemento de Html', vscode.CompletionItemKind.Function, 'CriarElemento(tag, conteudo: Texto) -> Texto', 'CriarElemento de Html com (${1:tag}, ${2:conteudo})'),
-      this.criarItem('CriarElementoComAtributos de Html', vscode.CompletionItemKind.Function, 'CriarElementoComAtributos(tag, attrs, conteudo: Texto) -> Texto', 'CriarElementoComAtributos de Html com (${1:tag}, ${2:atributos}, ${3:conteudo})')
+      this.criarItem('CriarElementoComAtributos de Html', vscode.CompletionItemKind.Function, 'CriarElementoComAtributos(tag, attrs, conteudo: Texto) -> Texto', 'CriarElementoComAtributos de Html com (${1:tag}, ${2:atributos}, ${3:conteudo})'),
+      this.criarItem('CriarLista de Html', vscode.CompletionItemKind.Function, 'CriarLista(itens...) -> Texto', 'CriarLista de Html com (${1:itens})'),
+      this.criarItem('CriarTabela de Html', vscode.CompletionItemKind.Function, 'CriarTabela(headers, linhas) -> Texto', 'CriarTabela de Html com (${1:headers}, ${2:linhas})'),
+      this.criarItem('CriarLink de Html', vscode.CompletionItemKind.Function, 'CriarLink(url, texto: Texto) -> Texto', 'CriarLink de Html com (${1:url}, ${2:texto})'),
+      this.criarItem('CriarImagem de Html', vscode.CompletionItemKind.Function, 'CriarImagem(src, alt: Texto) -> Texto', 'CriarImagem de Html com (${1:src}, ${2:alt})'),
+      this.criarItem('Atributo de Html', vscode.CompletionItemKind.Function, 'Atributo(chave, valor: Texto) -> Texto', 'Atributo de Html com (${1:chave}, ${2:valor})')
+    );
+
+    // Módulo Internet
+    items.push(
+      this.criarItem('Obter de Internet', vscode.CompletionItemKind.Function, 'Obter(url: Texto) -> Texto', 'Obter de Internet com (${1:url})'),
+      this.criarItem('Postar de Internet', vscode.CompletionItemKind.Function, 'Postar(url, corpo, tipoConteudo: Texto) -> Texto', 'Postar de Internet com (${1:url}, ${2:corpo}, ${3:"application/json"})'),
+      this.criarItem('Put de Internet', vscode.CompletionItemKind.Function, 'Put(url, corpo, tipoConteudo: Texto) -> Texto', 'Put de Internet com (${1:url}, ${2:corpo}, ${3:"application/json"})'),
+      this.criarItem('Deletar de Internet', vscode.CompletionItemKind.Function, 'Deletar(url: Texto) -> Texto', 'Deletar de Internet com (${1:url})'),
+      this.criarItem('Requisicao de Internet', vscode.CompletionItemKind.Function, 'Requisicao(metodo, url, corpo, tipoConteudo: Texto) -> Texto', 'Requisicao de Internet com (${1:metodo}, ${2:url}, ${3:corpo}, ${4:tipoConteudo})'),
+      this.criarItem('Status de Internet', vscode.CompletionItemKind.Function, 'Status(metodo, url: Texto) -> Inteiro', 'Status de Internet com (${1:metodo}, ${2:url})'),
+      this.criarItem('Baixar de Internet', vscode.CompletionItemKind.Function, 'Baixar(url, caminhoDestino: Texto) -> Texto', 'Baixar de Internet com (${1:url}, ${2:caminhoDestino})'),
+      this.criarItem('ConectarTCP de Internet', vscode.CompletionItemKind.Function, 'ConectarTCP(endereco: Texto) -> Conexao', 'ConectarTCP de Internet com (${1:endereco})'),
+      this.criarItem('OuvirTCP de Internet', vscode.CompletionItemKind.Function, 'OuvirTCP(endereco: Texto) -> ServidorTCP', 'OuvirTCP de Internet com (${1:endereco})'),
+      this.criarItem('OuvirUDP de Internet', vscode.CompletionItemKind.Function, 'OuvirUDP(endereco: Texto) -> ConexaoUDP', 'OuvirUDP de Internet com (${1:endereco})'),
+      this.criarItem('EnviarUDP de Internet', vscode.CompletionItemKind.Function, 'EnviarUDP(endereco, mensagem: Texto) -> Inteiro', 'EnviarUDP de Internet com (${1:endereco}, ${2:mensagem})'),
+      this.criarItem('ResolverHost de Internet', vscode.CompletionItemKind.Function, 'ResolverHost(host: Texto) -> Lista', 'ResolverHost de Internet com (${1:host})'),
+      this.criarItem('PortaAberta de Internet', vscode.CompletionItemKind.Function, 'PortaAberta(host: Texto, porta: Inteiro) -> Lógico', 'PortaAberta de Internet com (${1:host}, ${2:porta})'),
+      this.criarItem('ObterIPLocal de Internet', vscode.CompletionItemKind.Function, 'ObterIPLocal() -> Texto', 'ObterIPLocal de Internet com ()'),
+      this.criarItem('DefinirTempoLimite de Internet', vscode.CompletionItemKind.Function, 'DefinirTempoLimite(segundos: Inteiro)', 'DefinirTempoLimite de Internet com (${1:segundos})')
+    );
+
+    // Módulo Json
+    items.push(
+      this.criarItem('Codificar de Json', vscode.CompletionItemKind.Function, 'Codificar(valor: Qualquer) -> Texto', 'Codificar de Json com (${1:valor})'),
+      this.criarItem('Decodificar de Json', vscode.CompletionItemKind.Function, 'Decodificar(texto: Texto) -> Qualquer', 'Decodificar de Json com (${1:texto})'),
+      this.criarItem('ObterCampo de Json', vscode.CompletionItemKind.Function, 'ObterCampo(obj, campo: Texto) -> Qualquer', 'ObterCampo de Json com (${1:obj}, ${2:campo})'),
+      this.criarItem('ListaChaves de Json', vscode.CompletionItemKind.Function, 'ListaChaves(obj) -> Lista', 'ListaChaves de Json com (${1:obj})'),
+      this.criarItem('Tamanho de Json', vscode.CompletionItemKind.Function, 'Tamanho(obj) -> Inteiro', 'Tamanho de Json com (${1:obj})')
+    );
+
+    // Módulo Csv
+    items.push(
+      this.criarItem('Ler de Csv', vscode.CompletionItemKind.Function, 'Ler(texto: Texto) -> Lista', 'Ler de Csv com (${1:texto})'),
+      this.criarItem('LerArquivo de Csv', vscode.CompletionItemKind.Function, 'LerArquivo(caminho: Texto) -> Lista', 'LerArquivo de Csv com (${1:caminho})'),
+      this.criarItem('Escrever de Csv', vscode.CompletionItemKind.Function, 'Escrever(linhas: Lista) -> Texto', 'Escrever de Csv com (${1:linhas})'),
+      this.criarItem('EscreverArquivo de Csv', vscode.CompletionItemKind.Function, 'EscreverArquivo(caminho: Texto, linhas: Lista)', 'EscreverArquivo de Csv com (${1:caminho}, ${2:linhas})'),
+      this.criarItem('Formatar de Csv', vscode.CompletionItemKind.Function, 'Formatar(linhas: Lista) -> Texto', 'Formatar de Csv com (${1:linhas})')
+    );
+
+    // Módulo Sistema
+    items.push(
+      this.criarItem('Argumentos de Sistema', vscode.CompletionItemKind.Function, 'Argumentos() -> Lista', 'Argumentos de Sistema com ()'),
+      this.criarItem('Argumento de Sistema', vscode.CompletionItemKind.Function, 'Argumento(indice: Inteiro) -> Texto', 'Argumento de Sistema com (${1:indice})'),
+      this.criarItem('NumeroDeArgumentos de Sistema', vscode.CompletionItemKind.Function, 'NumeroDeArgumentos() -> Inteiro', 'NumeroDeArgumentos de Sistema com ()'),
+      this.criarItem('VariavelDeAmbiente de Sistema', vscode.CompletionItemKind.Function, 'VariavelDeAmbiente(nome: Texto) -> Texto', 'VariavelDeAmbiente de Sistema com (${1:nome})'),
+      this.criarItem('DefinirVariavelDeAmbiente de Sistema', vscode.CompletionItemKind.Function, 'DefinirVariavelDeAmbiente(nome, valor: Texto)', 'DefinirVariavelDeAmbiente de Sistema com (${1:nome}, ${2:valor})'),
+      this.criarItem('RemoverVariavelDeAmbiente de Sistema', vscode.CompletionItemKind.Function, 'RemoverVariavelDeAmbiente(nome: Texto)', 'RemoverVariavelDeAmbiente de Sistema com (${1:nome})'),
+      this.criarItem('VariaveisDeAmbiente de Sistema', vscode.CompletionItemKind.Function, 'VariaveisDeAmbiente() -> Lista', 'VariaveisDeAmbiente de Sistema com ()'),
+      this.criarItem('ExecutarComando de Sistema', vscode.CompletionItemKind.Function, 'ExecutarComando(comando: Texto) -> Texto', 'ExecutarComando de Sistema com (${1:comando})'),
+      this.criarItem('ExecutarComandoComArgumentos de Sistema', vscode.CompletionItemKind.Function, 'ExecutarComandoComArgumentos(programa: Texto, args: Lista) -> Texto', 'ExecutarComandoComArgumentos de Sistema com (${1:programa}, ${2:args})'),
+      this.criarItem('ExecutarComandoComEntrada de Sistema', vscode.CompletionItemKind.Function, 'ExecutarComandoComEntrada(comando, entrada: Texto) -> Texto', 'ExecutarComandoComEntrada de Sistema com (${1:comando}, ${2:entrada})'),
+      this.criarItem('DiretorioAtual de Sistema', vscode.CompletionItemKind.Function, 'DiretorioAtual() -> Texto', 'DiretorioAtual de Sistema com ()'),
+      this.criarItem('MudarDiretorio de Sistema', vscode.CompletionItemKind.Function, 'MudarDiretorio(caminho: Texto)', 'MudarDiretorio de Sistema com (${1:caminho})'),
+      this.criarItem('NomeSistemaOperacional de Sistema', vscode.CompletionItemKind.Function, 'NomeSistemaOperacional() -> Texto', 'NomeSistemaOperacional de Sistema com ()'),
+      this.criarItem('ArquiteturaProcessador de Sistema', vscode.CompletionItemKind.Function, 'ArquiteturaProcessador() -> Texto', 'ArquiteturaProcessador de Sistema com ()'),
+      this.criarItem('NomeDoComputador de Sistema', vscode.CompletionItemKind.Function, 'NomeDoComputador() -> Texto', 'NomeDoComputador de Sistema com ()'),
+      this.criarItem('PID de Sistema', vscode.CompletionItemKind.Function, 'PID() -> Inteiro', 'PID de Sistema com ()'),
+      this.criarItem('NumeroDeCPUs de Sistema', vscode.CompletionItemKind.Function, 'NumeroDeCPUs() -> Inteiro', 'NumeroDeCPUs de Sistema com ()'),
+      this.criarItem('Sair de Sistema', vscode.CompletionItemKind.Function, 'Sair()', 'Sair de Sistema com ()'),
+      this.criarItem('SairCom de Sistema', vscode.CompletionItemKind.Function, 'SairCom(codigo: Inteiro)', 'SairCom de Sistema com (${1:codigo})')
+    );
+
+    // Módulo Criptografia
+    items.push(
+      this.criarItem('Sha256 de Criptografia', vscode.CompletionItemKind.Function, 'Sha256(texto: Texto) -> Texto', 'Sha256 de Criptografia com (${1:texto})'),
+      this.criarItem('Sha512 de Criptografia', vscode.CompletionItemKind.Function, 'Sha512(texto: Texto) -> Texto', 'Sha512 de Criptografia com (${1:texto})'),
+      this.criarItem('Sha1 de Criptografia', vscode.CompletionItemKind.Function, 'Sha1(texto: Texto) -> Texto', 'Sha1 de Criptografia com (${1:texto})'),
+      this.criarItem('Md5 de Criptografia', vscode.CompletionItemKind.Function, 'Md5(texto: Texto) -> Texto', 'Md5 de Criptografia com (${1:texto})'),
+      this.criarItem('HmacSha256 de Criptografia', vscode.CompletionItemKind.Function, 'HmacSha256(chave, texto: Texto) -> Texto', 'HmacSha256 de Criptografia com (${1:chave}, ${2:texto})'),
+      this.criarItem('CompararHash de Criptografia', vscode.CompletionItemKind.Function, 'CompararHash(a, b: Texto) -> Lógico', 'CompararHash de Criptografia com (${1:a}, ${2:b})'),
+      this.criarItem('Base64Codificar de Criptografia', vscode.CompletionItemKind.Function, 'Base64Codificar(texto: Texto) -> Texto', 'Base64Codificar de Criptografia com (${1:texto})'),
+      this.criarItem('Base64Decodificar de Criptografia', vscode.CompletionItemKind.Function, 'Base64Decodificar(b64: Texto) -> Texto', 'Base64Decodificar de Criptografia com (${1:b64})'),
+      this.criarItem('Base64UrlCodificar de Criptografia', vscode.CompletionItemKind.Function, 'Base64UrlCodificar(texto: Texto) -> Texto', 'Base64UrlCodificar de Criptografia com (${1:texto})'),
+      this.criarItem('Base64UrlDecodificar de Criptografia', vscode.CompletionItemKind.Function, 'Base64UrlDecodificar(b64: Texto) -> Texto', 'Base64UrlDecodificar de Criptografia com (${1:b64})'),
+      this.criarItem('HexCodificar de Criptografia', vscode.CompletionItemKind.Function, 'HexCodificar(texto: Texto) -> Texto', 'HexCodificar de Criptografia com (${1:texto})'),
+      this.criarItem('HexDecodificar de Criptografia', vscode.CompletionItemKind.Function, 'HexDecodificar(hexStr: Texto) -> Texto', 'HexDecodificar de Criptografia com (${1:hexStr})'),
+      this.criarItem('Base32Codificar de Criptografia', vscode.CompletionItemKind.Function, 'Base32Codificar(texto: Texto) -> Texto', 'Base32Codificar de Criptografia com (${1:texto})'),
+      this.criarItem('Base32Decodificar de Criptografia', vscode.CompletionItemKind.Function, 'Base32Decodificar(b32: Texto) -> Texto', 'Base32Decodificar de Criptografia com (${1:b32})'),
+      this.criarItem('CifrarAES de Criptografia', vscode.CompletionItemKind.Function, 'CifrarAES(chave, texto: Texto) -> Texto', 'CifrarAES de Criptografia com (${1:chave}, ${2:texto})'),
+      this.criarItem('DecifrarAES de Criptografia', vscode.CompletionItemKind.Function, 'DecifrarAES(chave, dadosCifrados: Texto) -> Texto', 'DecifrarAES de Criptografia com (${1:chave}, ${2:dadosCifrados})'),
+      this.criarItem('CifraCesar de Criptografia', vscode.CompletionItemKind.Function, 'CifraCesar(texto: Texto, deslocamento: Inteiro) -> Texto', 'CifraCesar de Criptografia com (${1:texto}, ${2:deslocamento})'),
+      this.criarItem('Rot13 de Criptografia', vscode.CompletionItemKind.Function, 'Rot13(texto: Texto) -> Texto', 'Rot13 de Criptografia com (${1:texto})'),
+      this.criarItem('GerarUUID de Criptografia', vscode.CompletionItemKind.Function, 'GerarUUID() -> Texto', 'GerarUUID de Criptografia com ()'),
+      this.criarItem('GerarToken de Criptografia', vscode.CompletionItemKind.Function, 'GerarToken(tamanho: Inteiro) -> Texto', 'GerarToken de Criptografia com (${1:tamanho})'),
+      this.criarItem('GerarTextoAleatorio de Criptografia', vscode.CompletionItemKind.Function, 'GerarTextoAleatorio(tamanho: Inteiro) -> Texto', 'GerarTextoAleatorio de Criptografia com (${1:tamanho})'),
+      this.criarItem('NumeroAleatorio de Criptografia', vscode.CompletionItemKind.Function, 'NumeroAleatorio(minimo, maximo: Inteiro) -> Inteiro', 'NumeroAleatorio de Criptografia com (${1:minimo}, ${2:maximo})'),
+      this.criarItem('DecimalAleatorio de Criptografia', vscode.CompletionItemKind.Function, 'DecimalAleatorio() -> Decimal', 'DecimalAleatorio de Criptografia com ()'),
+      this.criarItem('BooleanoAleatorio de Criptografia', vscode.CompletionItemKind.Function, 'BooleanoAleatorio() -> Lógico', 'BooleanoAleatorio de Criptografia com ()'),
+      this.criarItem('EscolherAleatorio de Criptografia', vscode.CompletionItemKind.Function, 'EscolherAleatorio(lista: Lista) -> Qualquer', 'EscolherAleatorio de Criptografia com (${1:lista})'),
+      this.criarItem('Embaralhar de Criptografia', vscode.CompletionItemKind.Function, 'Embaralhar(lista: Lista) -> Lista', 'Embaralhar de Criptografia com (${1:lista})')
     );
   }
 

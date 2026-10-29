@@ -314,6 +314,136 @@ const DOCUMENTACAO_VERBO: Record<string, HoverInfo> = {
     titulo: 'Html.CriarElemento(tag, conteudo: Texto) -> Texto',
     descricao: 'Gera uma tag HTML delimitando o conteúdo.',
     exemplo: 'O titulo é CriarElemento de Html com ("h1", "Bem-vindo").'
+  },
+
+  // Módulo Internet
+  'obter': {
+    titulo: 'Internet.Obter(url: Texto) -> Texto',
+    descricao: 'Faz uma requisição HTTP GET para a URL especificada e retorna o corpo como texto.',
+    exemplo: 'O resposta é Obter de Internet com ("https://api.exemplo.com/dados").'
+  },
+  'postar': {
+    titulo: 'Internet.Postar(url, corpo, tipoConteudo: Texto) -> Texto',
+    descricao: 'Executa uma requisição HTTP POST para a URL fornecida.',
+    exemplo: 'O resp é Postar de Internet com ("https://httpbin.org/post", "{\\"id\\":1}", "application/json").'
+  },
+  'baixar': {
+    titulo: 'Internet.Baixar(url, destino: Texto) -> Texto',
+    descricao: 'Faz o download do conteúdo da URL e grava diretamente em um arquivo no disco.',
+    exemplo: 'Baixar de Internet com ("https://exemplo.com/foto.png", "foto.png").'
+  },
+  'conectartcp': {
+    titulo: 'Internet.ConectarTCP(endereco: Texto) -> Conexao',
+    descricao: 'Estabelece uma conexão cliente TCP com o endereço fornecido (ex: "127.0.0.1:8080").',
+    exemplo: 'O socket é ConectarTCP de Internet com ("127.0.0.1:9000").'
+  },
+  'ouvirtcp': {
+    titulo: 'Internet.OuvirTCP(endereco: Texto) -> ServidorTCP',
+    descricao: 'Cria e inicia um listener de servidor TCP no endereço fornecido.',
+    exemplo: 'O servidor é OuvirTCP de Internet com (":9000").'
+  },
+
+  // Módulo Json
+  'codificar': {
+    titulo: 'Json.Codificar(valor) -> Texto',
+    descricao: 'Converte uma estrutura de dados (map, lista, número, texto) em uma string formatada em JSON.',
+    exemplo: 'O texto é Codificar de Json com (dados).'
+  },
+  'decodificar': {
+    titulo: 'Json.Decodificar(texto: Texto) -> Qualquer',
+    descricao: 'Decodifica uma string JSON retornando sua estrutura correspondente.',
+    exemplo: 'O obj é Decodificar de Json com (texto).'
+  },
+  'obtercampo': {
+    titulo: 'Json.ObterCampo(obj, campo: Texto) -> Qualquer',
+    descricao: 'Extrai o valor de um campo de um mapa JSON decodificado.',
+    exemplo: 'O nome é ObterCampo de Json com (obj, "nome").'
+  },
+
+  // Módulo Csv
+  'ler': {
+    titulo: 'Csv.Ler(texto: Texto) -> Lista',
+    descricao: 'Parseia uma string no formato CSV e retorna uma lista de linhas (lista de listas).',
+    exemplo: 'O linhas é Ler de Csv com (texto).'
+  },
+  'escrever': {
+    titulo: 'Csv.Escrever(linhas: Lista) -> Texto',
+    descricao: 'Converte uma lista de listas em texto formatado em CSV.',
+    exemplo: 'O csv_texto é Escrever de Csv com (linhas).'
+  },
+  'lerarquivo': {
+    titulo: 'Csv.LerArquivo(caminho: Texto) -> Lista',
+    descricao: 'Lê um arquivo CSV do disco e retorna seus dados tabulares como listas.',
+    exemplo: 'O dados é LerArquivo de Csv com ("tabela.csv").'
+  },
+
+  // Módulo Sistema
+  'argumentos': {
+    titulo: 'Sistema.Argumentos() -> Lista',
+    descricao: 'Retorna a lista de argumentos passados via linha de comando ao programa.',
+    exemplo: 'O args é Argumentos de Sistema com ().'
+  },
+  'variaveldeambiente': {
+    titulo: 'Sistema.VariavelDeAmbiente(nome: Texto) -> Texto',
+    descricao: 'Obtém o valor de uma variável de ambiente do sistema operacional.',
+    exemplo: 'O path é VariavelDeAmbiente de Sistema com ("PATH").'
+  },
+  'executarcomando': {
+    titulo: 'Sistema.ExecutarComando(comando: Texto) -> Texto',
+    descricao: 'Executa uma linha de comando no terminal do sistema operacional e retorna a saída.',
+    exemplo: 'O saida é ExecutarComando de Sistema com ("ls -la").'
+  },
+  'diretorioatual': {
+    titulo: 'Sistema.DiretorioAtual() -> Texto',
+    descricao: 'Retorna o caminho absoluto do diretório de trabalho corrente.',
+    exemplo: 'O dir é DiretorioAtual de Sistema com ().'
+  },
+  'nomesistemaoperacional': {
+    titulo: 'Sistema.NomeSistemaOperacional() -> Texto',
+    descricao: 'Retorna o identificador do sistema operacional (linux, windows, darwin).',
+    exemplo: 'O os é NomeSistemaOperacional de Sistema com ().'
+  },
+
+  // Módulo Criptografia
+  'sha256': {
+    titulo: 'Criptografia.Sha256(texto: Texto) -> Texto',
+    descricao: 'Calcula o resumo criptográfico SHA-256 de um texto em representação hexadecimal.',
+    exemplo: 'O hash é Sha256 de Criptografia com ("senha123").'
+  },
+  'base64codificar': {
+    titulo: 'Criptografia.Base64Codificar(texto: Texto) -> Texto',
+    descricao: 'Codifica uma string de texto no formato Base64 padrão.',
+    exemplo: 'O b64 é Base64Codificar de Criptografia com ("Verbo").'
+  },
+  'base64decodificar': {
+    titulo: 'Criptografia.Base64Decodificar(b64: Texto) -> Texto',
+    descricao: 'Decodifica uma string Base64 retornando o texto legível.',
+    exemplo: 'O original é Base64Decodificar de Criptografia com (b64).'
+  },
+  'cifraraes': {
+    titulo: 'Criptografia.CifrarAES(chave, texto: Texto) -> Texto',
+    descricao: 'Criptografa um texto usando AES-256 no modo autenticado GCM.',
+    exemplo: 'O segredo é CifrarAES de Criptografia com ("minha_chave", "Segredo").'
+  },
+  'decifraraes': {
+    titulo: 'Criptografia.DecifrarAES(chave, dadosCifrados: Texto) -> Texto',
+    descricao: 'Decifra uma mensagem previamente cifrada com CifrarAES.',
+    exemplo: 'O texto é DecifrarAES de Criptografia com ("minha_chave", segredo).'
+  },
+  'geraruuid': {
+    titulo: 'Criptografia.GerarUUID() -> Texto',
+    descricao: 'Gera um identificador único universal versão 4 (UUID v4).',
+    exemplo: 'O id é GerarUUID de Criptografia com ().'
+  },
+  'gerartoken': {
+    titulo: 'Criptografia.GerarToken(tamanho: Inteiro) -> Texto',
+    descricao: 'Gera um token criptográfico aleatório seguro em formato hexadecimal.',
+    exemplo: 'O token é GerarToken de Criptografia com (32).'
+  },
+  'numeroaleatorio': {
+    titulo: 'Criptografia.NumeroAleatorio(minimo, maximo: Inteiro) -> Inteiro',
+    descricao: 'Gera um número inteiro pseudoaleatório dentro do intervalo fornecido [mínimo, máximo].',
+    exemplo: 'O dado é NumeroAleatorio de Criptografia com (1, 6).'
   }
 };
 
